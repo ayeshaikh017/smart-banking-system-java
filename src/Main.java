@@ -5,6 +5,10 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        UserService userService = new UserService(); 
+      
+
+
        
         while (true) {
             System.out.println("\n===== SMART BANKING SYSTEM =====");
@@ -21,32 +25,20 @@ public class Main {
             switch (choice) {
 
                 case 1:
-                    System.out.println("Register feature will be added tomorrow.");
+                    userService.registerUser(sc);
                     break;
 
                 case 2:
-                    System.out.println("Login feature will be added tomorrow.");
+                    userService.displayUsers();
                     break;
 
                 case 3:
-                    System.out.println("Deposit feature will be added later.");
-                    break;
-
-                case 4:
-                    System.out.println("Withdraw feature will be added later.");
-                    break;
-
-                case 5:
-                    System.out.println("Balance feature will be added later.");
-                    break;
-
-                case 6:
                     System.out.println("Thank you for using Smart Banking System.");
                     sc.close();
                     return;
 
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Invalid Choice.");
             }
         }
     }
