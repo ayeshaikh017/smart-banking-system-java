@@ -1,23 +1,37 @@
-public class User{
-int userId;
-String name;
-String email;
-String password;
+public class User {
 
-User(int userId, String name, String email, String password){
-    this.userId = userId;
-    this.name = name;
-    this.email = email;
-    this.password = password;
+    private int userId;
+    private String name;
+    private String email;
+    private String password;
 
-}
+    public User(int userId, String name, String email, String password) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
-void displayUser(){
- System.out.println("User ID: " + userId);
-    System.out.println("Name: " + name);
-    System.out.println("Email: " + email);
+    // Getters
+    public int getUserId() {
+        return userId;
+    }
 
+    public String getName() {
+        return name;
+    }
 
-}
+    public String getEmail() {
+        return email;
+    }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void displayUser() {
+        System.out.println("User ID : " + userId);
+        System.out.println("Name    : " + name);
+        System.out.println("Email   : " + email);
+    }
 }

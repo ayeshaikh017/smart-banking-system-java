@@ -5,31 +5,72 @@ import java.util.Scanner;
 public class UserService {
 
     private ArrayList<User> users = new ArrayList<>();
+    private boolean isEmailExists(String email) {
+
+    for (User user : users) {
+        if (user.getEmail().equalsIgnoreCase(email)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+private boolean isValidEmail(String email) {
+
+    return email.contains("@") && email.contains(".");
+}
+
+private boolean isValidPassword(String password) {
+
+    return password.length() >= 6;
+}
 
     public void registerUser(Scanner sc) {
 
-        System.out.println("\n===== User Registration =====");
+    System.out.println("\n===== USER REGISTRATION =====");
 
-        System.out.print("Enter User ID: ");
-        int userId = sc.nextInt();
-        sc.nextLine(); // consume newline
+    System.out.print("Enter User ID : ");
+    int id = sc.nextInt();
+    sc.nextLine();
 
-        System.out.print("Enter Name: ");
-        String name = sc.nextLine();
+    System.out.print("Enter Name : ");
+    String name = sc.nextLine();
 
-        System.out.print("Enter Email: ");
-        String email = sc.nextLine();
-
-        System.out.print("Enter Password: ");
-        String password = sc.nextLine();
-
-        User newUser = new User(userId, name, email, password);
-
-        users.add(newUser);
-
-        System.out.println("\n User Registered Successfully!");
+    if (name.trim().isEmpty()) {
+        System.out.println("Name cannot be empty.");
+        return;
     }
 
+    System.out.print("Enter Email : ");
+    String email = sc.nextLine();
+
+    if (!isValidEmail(email)) {
+        System.out.println("Invalid Email Format.");
+        return;
+    }
+
+    if (isEmailExists(email)) {
+        System.out.println("Email already registered.");
+        return;
+    }
+
+    System.out.print("Enter Password : ");
+    String password = sc.nextLine();
+
+    if (!isValidPassword(password)) {
+        System.out.println("Password must contain at least 6 characters.");
+        return;
+    }
+
+    
+
+    User newUser = new User(id, name, email, password);
+
+    users.add(newUser);
+
+    System.out.println("\nUser Registered Successfully!");
+}
     public void displayUsers() {
 
         if (users.isEmpty()) {
@@ -44,4 +85,32 @@ public class UserService {
             System.out.println("-------------------------");
         }
     }
+
+    public void loginUser(Scanner sc) {
+
+    System.out.println("\n===== USER LOGIN =====");
+
+    sc.nextLine();
+
+    System.out.print("Enter Email : ");
+    String email = sc.nextLine();
+
+    System.out.print("Enter Password : ");
+    String password = sc.nextLine();
+
+    for (User user : users) {
+
+        if (user.getEmail().equalsIgnoreCase(email)
+                && user.getPassword().equals(password)) {
+
+            System.out.println("\nLogin Successful!");
+            System.out.println("Welcome " + user.getName());
+
+            return;
+        }
+
+    }
+
+    System.out.println("\nInvalid Email or Password.");
+}
 }
