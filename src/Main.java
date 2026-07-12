@@ -15,8 +15,8 @@ public class Main {
 System.out.println("1. Register User");
 System.out.println("2. Login User");
 System.out.println("3. View Users");
-System.out.println("4. Exit");
-
+System.out.println("4. View Accounts");
+System.out.println("5. Exit");
 System.out.print("Enter your choice : ");
 int choice = sc.nextInt();
             switch (choice) {
@@ -33,10 +33,14 @@ int choice = sc.nextInt();
         userService.displayUsers();
         break;
 
-    case 4:
-        System.out.println("Thank You!");
-        sc.close();
-        return;
+   case 4:
+    userService.displayAccounts();
+    break;
+
+case 5:
+    System.out.println("Thank You!");
+    sc.close();
+    return;
 
     default:
         System.out.println("Invalid Choice.");

@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserService {
+    private static int nextUserId = 1;
+
+private BankAccountService accountService =
+        new BankAccountService();
 
     private ArrayList<User> users = new ArrayList<>();
     private boolean isEmailExists(String email) {
@@ -29,10 +33,8 @@ private boolean isValidPassword(String password) {
     public void registerUser(Scanner sc) {
 
     System.out.println("\n===== USER REGISTRATION =====");
-
-    System.out.print("Enter User ID : ");
-    int id = sc.nextInt();
     sc.nextLine();
+int id = nextUserId++;
 
     System.out.print("Enter Name : ");
     String name = sc.nextLine();
@@ -68,6 +70,19 @@ private boolean isValidPassword(String password) {
     User newUser = new User(id, name, email, password);
 
     users.add(newUser);
+    BankAccount account =
+        accountService.createAccount(id);
+
+System.out.println("\nUser Registered Successfully!");
+
+System.out.println("Generated User ID : "
+        + newUser.getUserId());
+
+System.out.println("Generated Account Number : "
+        + account.getAccountNumber());
+
+System.out.println("Opening Balance : Rs."
+        + account.getBalance());
 
     System.out.println("\nUser Registered Successfully!");
 }
@@ -112,5 +127,12 @@ private boolean isValidPassword(String password) {
     }
 
     System.out.println("\nInvalid Email or Password.");
+
+
+}
+
+public void displayAccounts() {
+
+    accountService.displayAllAccounts();
 }
 }
