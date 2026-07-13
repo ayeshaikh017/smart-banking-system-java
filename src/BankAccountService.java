@@ -29,4 +29,21 @@ public class BankAccountService {
             account.displayAccount();
         }
     }
+    public void deposit(int accountNumber, double amount) {
+
+    for (BankAccount account : accounts) {
+
+        if (account.getAccountNumber() == accountNumber) {
+
+            account.setBalance(account.getBalance() + amount);
+
+            System.out.println("\nDeposit Successful!");
+            System.out.println("Updated Balance : Rs. " + account.getBalance());
+
+            return;
+        }
+    }
+
+    System.out.println("Account Not Found!");
 }
+    }

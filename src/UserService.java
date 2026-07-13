@@ -135,4 +135,16 @@ public void displayAccounts() {
 
     accountService.displayAllAccounts();
 }
+public void depositMoney(Scanner sc) {
+
+    System.out.println("\n===== DEPOSIT MONEY =====");
+
+    System.out.print("Enter Account Number : ");
+    int accountNumber = sc.nextInt();
+
+    System.out.print("Enter Amount : ");
+    double amount = sc.nextDouble();
+
+    accountService.deposit(accountNumber, amount);
+}
 }

@@ -12,14 +12,16 @@ public class Main {
        
         while (true) {
         System.out.println("\n===== SMART BANKING SYSTEM =====");
+
 System.out.println("1. Register User");
 System.out.println("2. Login User");
 System.out.println("3. View Users");
 System.out.println("4. View Accounts");
-System.out.println("5. Exit");
-System.out.print("Enter your choice : ");
+System.out.println("5. Deposit Money");
+System.out.println("6. Exit");
+System.out.print("Enter Your Choice : ");
 int choice = sc.nextInt();
-            switch (choice) {
+    switch (choice) {
 
     case 1:
         userService.registerUser(sc);
@@ -37,7 +39,12 @@ int choice = sc.nextInt();
     userService.displayAccounts();
     break;
 
-case 5:
+
+    case 5:
+    userService.depositMoney(sc);
+    break;
+
+    case 6:
     System.out.println("Thank You!");
     sc.close();
     return;
