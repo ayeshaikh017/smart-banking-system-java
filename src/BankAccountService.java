@@ -87,4 +87,68 @@ public void withdrawMoney(Scanner sc) {
 
     System.out.println("Account Not Found.");
 }
+// Transfer Money
+public void transferMoney(Scanner sc) {
+
+    System.out.println("\n===== TRANSFER MONEY =====");
+
+    System.out.print("Enter Sender Account Number : ");
+    int senderAcc = sc.nextInt();
+
+    System.out.print("Enter Receiver Account Number : ");
+    int receiverAcc = sc.nextInt();
+
+    if (senderAcc == receiverAcc) {
+        System.out.println("Sender and Receiver Account cannot be the same.");
+        return;
+    }
+
+    BankAccount sender = null;
+    BankAccount receiver = null;
+
+    // Search both accounts
+    for (BankAccount account : accounts) {
+
+        if (account.getAccountNumber() == senderAcc) {
+            sender = account;
+        }
+
+        if (account.getAccountNumber() == receiverAcc) {
+            receiver = account;
+        }
+    }
+
+    if (sender == null) {
+        System.out.println("Sender Account Not Found.");
+        return;
+    }
+
+    if (receiver == null) {
+        System.out.println("Receiver Account Not Found.");
+        return;
+    }
+
+    System.out.print("Enter Amount : Rs. ");
+    double amount = sc.nextDouble();
+
+    if (amount <= 0) {
+        System.out.println("Invalid Amount.");
+        return;
+    }
+
+    if (amount > sender.getBalance()) {
+        System.out.println("Insufficient Balance.");
+        return;
+    }
+
+    // Debit Sender
+    sender.setBalance(sender.getBalance() - amount);
+
+    // Credit Receiver
+    receiver.setBalance(receiver.getBalance() + amount);
+
+    System.out.println("\nMoney Transferred Successfully!");
+    System.out.println("Sender Balance   : Rs. " + sender.getBalance());
+    System.out.println("Receiver Balance : Rs. " + receiver.getBalance());
+}
     }

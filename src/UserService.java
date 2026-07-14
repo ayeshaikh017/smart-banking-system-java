@@ -152,4 +152,10 @@ public void withdrawMoney(Scanner sc) {
 
     accountService.withdrawMoney(sc);
 }
+
+public void transferMoney(Scanner sc) {
+
+    accountService.transferMoney(sc);
+
+}
 }

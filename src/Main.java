@@ -18,7 +18,8 @@ System.out.println("3. View Users");
 System.out.println("4. View Accounts");
 System.out.println("5. Deposit Money");
 System.out.println("6. Withdraw Money");
-System.out.println("7. Exit");
+System.out.println("7. Transfer Money");
+System.out.println("8. Exit");
 System.out.print("Enter Your Choice : ");
 int choice = sc.nextInt();
     switch (choice) {
@@ -49,6 +50,10 @@ int choice = sc.nextInt();
     break;
 
     case 7:
+    userService.transferMoney(sc);
+    break;
+    
+    case 8:
     System.out.println("Thank You!");
     sc.close();
     return;
