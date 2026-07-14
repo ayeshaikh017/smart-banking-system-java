@@ -146,5 +146,10 @@ public void depositMoney(Scanner sc) {
     double amount = sc.nextDouble();
 
     accountService.deposit(accountNumber, amount);
+
+}
+public void withdrawMoney(Scanner sc) {
+
+    accountService.withdrawMoney(sc);
 }
 }

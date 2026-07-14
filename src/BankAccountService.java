@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BankAccountService {
 
@@ -45,5 +46,45 @@ public class BankAccountService {
     }
 
     System.out.println("Account Not Found!");
+}
+
+// Withdraw Money
+public void withdrawMoney(Scanner sc) {
+
+    System.out.println("\n===== WITHDRAW MONEY =====");
+
+    System.out.print("Enter Account Number : ");
+    int accountNumber = sc.nextInt();
+
+    // Search Account
+    for (BankAccount account : accounts) {
+
+        if (account.getAccountNumber() == accountNumber) {
+
+            System.out.print("Enter Withdraw Amount : Rs.");
+            double amount = sc.nextDouble();
+
+            if (amount <= 0) {
+                System.out.println("Invalid Withdraw Amount.");
+                return;
+            }
+
+            if (amount > account.getBalance()) {
+                System.out.println("Insufficient Balance.");
+                return;
+            }
+
+            double newBalance = account.getBalance() - amount;
+
+            account.setBalance(newBalance);
+
+            System.out.println("\nAmount Withdrawn Successfully!");
+            System.out.println("Remaining Balance : Rs." + account.getBalance());
+
+            return;
+        }
+    }
+
+    System.out.println("Account Not Found.");
 }
     }
